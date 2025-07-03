@@ -5,3 +5,14 @@ with username and password
 username=> admin
 passsword => admin123
 
+------------------------------
+This POC is started as mentioned above and continued as below
+
+now after instroduing JWt tocken, we have have jwt tocken generated and that jwt token is used to validate 
+future authentication
+
+JwtAuthFilter is as part of initial entry point to application and if that does not contain barer tocken
+then it will pass it to BasicAuthentication.
+
+api like "auth/jwt" is exclued form authentication so that it can generate JWT tocken
+

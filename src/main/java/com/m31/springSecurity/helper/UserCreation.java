@@ -20,12 +20,17 @@ public class UserCreation implements CommandLineRunner {
     private PasswordEncoder passwordEncoder;
     @Override
     public void run(String... args) throws Exception {
-        log.info("Creating Base User");
-        CustomUser user =new CustomUser();
-        user.setUserName("admin");
-        user.setPassword(passwordEncoder.encode("admin123"));
-        user.setRole("ADMIN");
-        userDetailsRepo.save(user);
-        log.info( user.getUsername()+ "User CREATED");
+
+        if(userDetailsRepo.findByUserName("admin").isEmpty())
+        {
+            log.info("Creating Base User");
+            CustomUser user =new CustomUser();
+            user.setUserName("admin");
+            user.setPassword(passwordEncoder.encode("admin123"));
+            user.setRole("ADMIN");
+            userDetailsRepo.save(user);
+            log.info( user.getUsername()+ "User CREATED");
+        }else
+            log.warn("user Already Present");
     }
 }
